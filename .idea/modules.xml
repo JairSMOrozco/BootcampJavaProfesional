@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/BootcampJavaProfesional.iml" filepath="$PROJECT_DIR$/BootcampJavaProfesional.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IntroJava.iml" filepath="$PROJECT_DIR$/IntroJava.iml" />
     </modules>
   </component>
 </project>
