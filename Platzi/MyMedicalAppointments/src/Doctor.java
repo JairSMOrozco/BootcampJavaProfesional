@@ -3,11 +3,15 @@ public class Doctor {
     static int nextValidId = 1; //Autoincremental siempre que se cree una nueva instancia
     int id;
     String name;
+    String email;
     String speciality;
 
     //Constructor
-    Doctor(){
+    Doctor(String name, String email, String speciality){
         id = nextValidId++;
+        this.name = name;
+        this.email = email;
+        this.speciality = speciality;
     }
 
     //Métodos
