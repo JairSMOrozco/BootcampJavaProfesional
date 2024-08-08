@@ -1,31 +1,25 @@
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Doctor {
+public class Doctor extends User{
     //Atributos
-    static int nextValidId = 1; //Autoincremental siempre que se cree una nueva instancia
-    int id;
-    private String name;
-    private String email;
     private String speciality;
 
 
-
     //Constructor
-    Doctor(String name, String email, String speciality){
-        id = nextValidId++;
-        this.name = name;
-        this.email = email;
+    Doctor(String name, String email){
+        super(name, email);
         this.speciality = speciality;
     }
 
     //Métodos
-    public void showName(){
-        System.out.println("Nombre del doctor: " + name);
+
+    public String getSpeciality() {
+        return speciality;
     }
 
-    public void showId(){
-        System.out.println("ID Doctor: " + id);
+    public void setSpeciality(String speciality) {
+        this.speciality = speciality;
     }
 
     //Declaracion de un ArrayList que contendra los datos para las citas

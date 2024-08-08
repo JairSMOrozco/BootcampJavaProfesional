@@ -9,16 +9,12 @@ public class Main {
         //Llamando métodos estáticos de ui.UIMenu
         //showMenu();
 
-        Doctor myDoctor = new Doctor("Jair Orozco", "example@example.com", "Cirujano");
-        myDoctor.addAvailableAppointment(new Date(), "4pm");
-        myDoctor.addAvailableAppointment(new Date(), "10pm");
-        myDoctor.addAvailableAppointment(new Date(), "11am");
-
-        for (Doctor.AvailableAppointment aA: myDoctor.getAvailableAppointments()){
-            System.out.println(aA.getDate() + " " + aA.getTime());
-        }
-
+        Doctor myDoctor = new Doctor("Jair Orozco", "example@example.com");
         Patient patient = new Patient("Alejandra", "alejandra@mail.com");
+
+
+        System.out.println(patient);
+        System.out.println(myDoctor);
 
     }
 
