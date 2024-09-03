@@ -35,6 +35,13 @@ public class Doctor extends User{
         return availableAppointments;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() +
+                "\nSpeciality: " + speciality +
+                "\nAvailable" +
+                "\n" + availableAppointments.toString();
+    }
 
     // Clase estatica anidada con sus getters y setters
     public static class AvailableAppointment{
@@ -70,5 +77,13 @@ public class Doctor extends User{
         public void setTime(String time) {
             this.time = time;
         }
+
+        @Override
+        public String toString() {
+            return "Available Appoointments " +
+                    "\nDate: " + date +
+                    "\nTime: " + time;
+        }
     }
+
 }

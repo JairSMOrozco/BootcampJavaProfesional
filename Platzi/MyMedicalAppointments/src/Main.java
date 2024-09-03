@@ -11,9 +11,10 @@ public class Main {
 
         Doctor myDoctor = new Doctor("Jair Orozco", "example@example.com");
         Patient patient = new Patient("Alejandra", "alejandra@mail.com");
+        myDoctor.addAvailableAppointment(new Date(), "11am");
+        myDoctor.addAvailableAppointment(new Date(), "1pm");
 
-
-        System.out.println(patient);
+        //System.out.println(patient);
         System.out.println(myDoctor);
 
     }
