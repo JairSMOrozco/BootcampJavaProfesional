@@ -1,20 +1,24 @@
-import javax.swing.*;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class SistemasNumericos {
+public class SistemasNumericosEntradaTerminal {
     public static void main(String[] args) {
 
-        //Captura de numero por ventana de dialogo
-        String numeroString = JOptionPane.showInputDialog(null, "Ingresa un numero entero");
+        Scanner myScanner = new Scanner(System.in);
+
+        //Captura de numero por terminal
+        System.out.println("Ingresa un numero entero");
+
+        //String numeroString = myScanner.nextLine();
 
         int numeroDecimal = 0;
 
         try{
             //Conversión a integer de numero ingresado
-            numeroDecimal = Integer.parseInt(numeroString);
+            numeroDecimal = myScanner.nextInt(); //Integer.parseInt(numeroString);
 
-        }catch (NumberFormatException e){
-            JOptionPane.showMessageDialog(null, "Debes ingresar un numero entero");
+        }catch (InputMismatchException e){
+            System.out.println("Debes ingresar un numero entero");
             main(args);
             System.exit(0);
         }
@@ -38,6 +42,6 @@ public class SistemasNumericos {
                 numHexadecimalString;
 
         //Ventana que muestra el resultado de las conversiones
-        JOptionPane.showMessageDialog(null, salida);
+        System.out.println(salida);
     }
 }
