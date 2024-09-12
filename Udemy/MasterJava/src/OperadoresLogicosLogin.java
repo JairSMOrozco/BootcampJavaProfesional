@@ -25,18 +25,13 @@ public class OperadoresLogicosLogin {
         String pass = mySCanner.nextLine();
 
         for(int i = 0; i < userNames.length; i++){
-            if (userNames[i].equals(user) && passwords[i].equals(pass)){
-                isAuth = true;
-                break;
-            }
+            isAuth = userNames[i].equals(user) && passwords[i].equals(pass) ? true : isAuth;
         }
 
-        if(isAuth){
-            System.out.println("Inicio de sesión exitoso.");
-            System.out.println("Bienvenido ".concat(user));
-        }else {
-            System.out.println("Usuario y/o contraseña incorrectos");
-        }
+        String mensaje = isAuth ? "Inicio de sesión exitoso." + "\n" + "Bienvenido ".concat(user) :
+                "Usuario y/o contraseña incorrectos";
+
+        System.out.println(mensaje);
 
     }
 }
