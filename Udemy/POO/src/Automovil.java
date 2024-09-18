@@ -1,54 +1,75 @@
 public class Automovil {
 
     //Atributos
+    private int id;
     private String fabricante;
     private String modelo;
-    private String color = "gris";
-    private double cilindrada;
-    private int capacidadTanque = 40;
+    private Color color = Color.GRIS_OSCURO;
+    private Motor motor;
+    private Tanque tanque;
+    private TipoAutomovil tipo;
+    private Persona conductor;
+    private Rueda[] ruedas;
 
-    private static String colorPatente = "Naranja";
+    //Atributos estáticos
+    private static int ultimoId;
+    private static Color colorPatente = Color.NARANJA;
     private static int capacidadTanqueEstatico = 30;
+    public static final Integer VELOCIDAD_MAX_CARRETERA = 120;
+    public static final int VELOCIDAD_MAX_CIUDAD = 60;
+
+    /*
+    public static final String COLOR_ROJO = "Rojo";
+    public static final String COLOR_AMARILLO = "Amarillo";
+    public static final String COLOR_AZUL = "Azul";
+    public static final String COLOR_BLANCO = "Blanco";
+    public static final String COLOR_GRIS_OSCURO = "Gris Oscuro";
+    */
 
     //Constructores
     public Automovil(){
-
+        this.id = ++ultimoId;
     }
 
     public Automovil(String fabricante, String modelo){
+        this();
         this.fabricante = fabricante;
         this.modelo = modelo;
     }
 
-    public Automovil(String fabricante, String modelo, String color){
+    public Automovil(String fabricante, String modelo, Color color){
         this(fabricante, modelo);
-        //this.fabricante = fabricante;
-        //this.modelo = modelo;
         this.color = color;
     }
 
-    public Automovil(String fabricante, String modelo, String color, double cilindrada) {
+    public Automovil(String fabricante, String modelo, Color color, Motor motor) {
         this(fabricante, modelo, color);
-        //this.fabricante = fabricante;
-        //this.modelo = modelo;
-        //this.color = color;
-        this.cilindrada = cilindrada;
+        this.motor = motor;
     }
 
-    public Automovil(String fabricante, String modelo, String color, double cilindrada, int capacidadTanque) {
-        this(fabricante, modelo, color, cilindrada);
-        //this.fabricante = fabricante;
-        //this.modelo = modelo;
-        //this.color = color;
-        //this.cilindrada = cilindrada;
-        this.capacidadTanque = capacidadTanque;
+    public Automovil(String fabricante, String modelo, Color color, Motor motor, Tanque tanque) {
+        this(fabricante, modelo, color, motor);
+        this.tanque = tanque;
+    }
+
+    public Automovil(String fabricante, String modelo, Color color, Motor motor, Tanque tanque, Persona conductor, Rueda[] ruedas) {
+        this(fabricante, modelo, color, motor, tanque);
+        this.conductor = conductor;
+        this.ruedas = ruedas;
     }
 
     //getters y setters
+
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getFabricante() {
         return fabricante;
     }
-
     public void setFabricante(String fabricante) {
         this.fabricante = fabricante;
     }
@@ -56,50 +77,87 @@ public class Automovil {
     public String getModelo() {
         return modelo;
     }
-
     public void setModelo(String modelo) {
         this.modelo = modelo;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
-
-    public void setColor(String color) {
+    public void setColor(Color color) {
         this.color = color;
     }
 
-    public double getCilindrada() {
-        return cilindrada;
-    }
 
-    public void setCilindrada(double cilindrada) {
-        this.cilindrada = cilindrada;
-    }
-
-    public int getCapacidadTanque() {
-        return capacidadTanque;
-    }
-
-    public void setCapacidadTanque(int capacidadTanque) {
-        this.capacidadTanque = capacidadTanque;
-    }
-
-    public static String getColorPatente(){
+    public static Color getColorPatente(){
         return colorPatente;
     }
-
-    public static void setColorPatente(String colorPatente){
+    public static void setColorPatente(Color colorPatente){
         Automovil.colorPatente = colorPatente;
+    }
+
+    public static int getCapacidadTanqueEstatico(){
+        return capacidadTanqueEstatico;
+    }
+    public static void setCapacidadTanqueEstatico(int capacidadTanqueEstatico){
+        Automovil.capacidadTanqueEstatico = capacidadTanqueEstatico;
+    }
+
+    public TipoAutomovil getTipo() {
+        return tipo;
+    }
+    public void setTipo(TipoAutomovil tipo) {
+        this.tipo = tipo;
+    }
+
+    public Motor getMotor() {
+        return motor;
+    }
+    public void setMotor(Motor motor) {
+        this.motor = motor;
+    }
+
+    public Tanque getTanque() {
+        return tanque;
+    }
+    public void setTanque(Tanque tanque) {
+        this.tanque = tanque;
+    }
+
+    public Persona getConductor() {
+        return conductor;
+    }
+    public void setConductor(Persona conductor) {
+        this.conductor = conductor;
+    }
+
+    public Rueda[] getRuedas() {
+        return ruedas;
+    }
+    public void setRuedas(Rueda[] ruedas) {
+        this.ruedas = ruedas;
     }
 
     //Métodos de operación
     public String detalle(){
-        return "\nauto.fabricante = " + getFabricante() + "\n" +
-                "auto.modelo = " + getModelo() + "\n" +
-                "auto.color = " + getColor() + "\n" +
-                "auto.cilindrada = " + getCilindrada() + "\n" +
-                "auto.colorPatente = " + Automovil.colorPatente + "\n";
+        String detalle = "\nauto.id = " + getId() + "\n" +
+                "auto.fabricante = " + getFabricante() + "\n" +
+                "auto.modelo = " + getModelo() + "\n";
+
+                if(getTipo() != null){
+                    detalle += "auto.tipo = " + getTipo().getNombre() + "\n";
+                }
+
+                detalle += "auto.color = " + getColor() + "\n";
+
+                if(getMotor() != null){
+                    detalle += "auto.cilindrada = " + getMotor().getCilindrada() + "\n";
+                }
+
+                detalle += "auto.colorPatente = " + Automovil.getColorPatente() + "\n";
+
+
+        return detalle;
 
     }
 
@@ -119,11 +177,11 @@ public class Automovil {
     }
 
     public float calcularConsumo(int kilometraje, float porcentaje){
-        return kilometraje / (capacidadTanque * porcentaje);
+        return kilometraje / (getTanque().getCapacidad() * porcentaje);
     }
 
     public float calcularConsumo(int kilometraje, int porcentaje){
-        return kilometraje / (capacidadTanque * (porcentaje/100f));
+        return kilometraje / (getTanque().getCapacidad() * (porcentaje/100f));
     }
 
     public static float calcularConsumoEstatico(int kilometraje, int porcentaje){
@@ -151,11 +209,12 @@ public class Automovil {
     @Override
     public String toString() {
         return "Automovil{" +
-                "fabricante='" + fabricante + '\'' +
+                "id= " + id +
+                ", fabricante='" + fabricante + '\'' +
                 ", modelo='" + modelo + '\'' +
                 ", color='" + color + '\'' +
-                ", cilindrada=" + cilindrada +
-                ", capacidadTanque=" + capacidadTanque +
+                ", cilindrada=" + getMotor().getCilindrada() +
+                ", capacidadTanque=" + getTanque().getCapacidad() +
                 '}';
     }
 }
