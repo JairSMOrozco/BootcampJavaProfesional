@@ -1,4 +1,4 @@
-public class Automovil {
+public class Automovil implements Comparable<Automovil>{
 
     //Atributos
     private int id;
@@ -10,6 +10,7 @@ public class Automovil {
     private TipoAutomovil tipo;
     private Persona conductor;
     private Rueda[] ruedas;
+    private int indiceRueda;
 
     //Atributos estáticos
     private static int ultimoId;
@@ -29,6 +30,7 @@ public class Automovil {
     //Constructores
     public Automovil(){
         this.id = ++ultimoId;
+        this.ruedas = new Rueda[5];
     }
 
     public Automovil(String fabricante, String modelo){
@@ -137,6 +139,12 @@ public class Automovil {
     public void setRuedas(Rueda[] ruedas) {
         this.ruedas = ruedas;
     }
+    public Automovil addRueda(Rueda rueda){
+        if (indiceRueda < this.ruedas.length){
+            this.ruedas[indiceRueda++] = rueda;
+        }
+        return this;
+    }
 
     //Métodos de operación
     public String detalle(){
@@ -156,6 +164,16 @@ public class Automovil {
 
                 detalle += "auto.colorPatente = " + Automovil.getColorPatente() + "\n";
 
+                if(getConductor() != null){
+                    detalle += "\nConductor: " + getConductor();
+                }
+
+                if(getRuedas() != null){
+                    detalle += "\nRuedas del automovil: ";
+                    for (Rueda ruedas: getRuedas()){
+                        detalle += ruedas.getFabricante() + ", aro: " + ruedas.getAro() + ", ancho: " + ruedas.getAncho() + "\n";
+                    }
+                }
 
         return detalle;
 
@@ -208,13 +226,13 @@ public class Automovil {
 
     @Override
     public String toString() {
-        return "Automovil{" +
-                "id= " + id +
-                ", fabricante='" + fabricante + '\'' +
-                ", modelo='" + modelo + '\'' +
-                ", color='" + color + '\'' +
-                ", cilindrada=" + getMotor().getCilindrada() +
-                ", capacidadTanque=" + getTanque().getCapacidad() +
-                '}';
+        return  id +
+                ": " + fabricante +
+                "/" + modelo;
+    }
+
+    @Override
+    public int compareTo(Automovil auto) {
+        return this.fabricante.compareTo(auto.fabricante);
     }
 }
