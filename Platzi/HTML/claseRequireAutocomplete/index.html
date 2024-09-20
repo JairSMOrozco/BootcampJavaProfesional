@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Require</title>
+</head>
+<body>
+    <form action="">
+        <label for="nombre">
+            <span>¿Cuál es tu nombre?</span>
+            <input type="text" name="nombre" id="nombre" required autocomplete="name">
+        </label>
+
+        <label for="correo">
+            <span>¿Cuál es tu correo?</span>
+            <input type="email" name="correo" id="correo" required autocomplete="email">
+        </label>
+
+        <label for="pais">
+            <span>¿En qué país vives?</span>
+            <input type="text" name="pais" id="pais" required autocomplete="country">
+        </label>
+
+        <label for="codigo-postal">
+            <span>¿Cuál es tu código postal?</span>
+            <input type="text" name="codigo-postal" id="codigo-postal" required autocomplete="postal-code">
+        </label>
+
+        <input type="submit">
+
+    </form>
+</body>
+</html>
