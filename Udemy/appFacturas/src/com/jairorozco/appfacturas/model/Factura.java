@@ -1,0 +1,109 @@
+package com.jairorozco.appfacturas.model;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class Factura {
+    //Atributos
+    private int folio;
+    private String descripcion;
+    private Date fecha;
+    private Cliente cliente;
+    private ItemFactura[] items;
+    private int indiceItems;
+    public static final int MAX_ITEMS = 10;
+    private static int ULTIMO_FOLIO;
+
+    //Constructor
+    public Factura(String descripcion, Cliente cliente) {
+        this.descripcion = descripcion;
+        this.cliente = cliente;
+        this.items = new ItemFactura[MAX_ITEMS];
+        this.folio = ++ULTIMO_FOLIO;
+        this.fecha = new Date();
+    }
+
+    //Getters and setters
+    public int getFolio() {
+        return folio;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public ItemFactura[] getItems() {
+        return items;
+    }
+    public void addItemFactura(ItemFactura item) {
+        if(indiceItems < MAX_ITEMS) {
+            this.items[indiceItems++] = item;
+        }
+    }
+
+    //Métodos
+    public float calcularTotal(){
+        float total = 0.0f;
+        for (ItemFactura item : items) {
+            if(item == null){
+                continue;
+            }
+            total += item.calcularIMporte();
+        }
+
+        return total;
+    }
+
+    public String generarDetalle(){
+        StringBuilder sb = new StringBuilder("Factura No: ");
+        sb.append(folio)
+                .append("\nCliente: ")
+                .append(this.cliente.getNombre())
+                .append("\t NIF: ")
+                .append(cliente.getNif())
+                .append("\nDescripción: ")
+                .append(this.descripcion)
+                .append("\n");
+
+        SimpleDateFormat df = new SimpleDateFormat("dd 'de' MMMM, yyyy");
+
+        sb.append("Fecha Emisión: ")
+                .append(df.format(this.fecha))
+                .append("\n")
+                .append("\n#\tNombre\t$\t\tCant.\tTotal\n");
+
+        for (ItemFactura item : this.items) {
+            if(item == null){
+                continue;
+            }
+            sb.append(item.toString())
+                    .append("\n");
+        }
+        sb.append("\nGran Total: ")
+                .append(calcularTotal());
+
+        return sb.toString();
+    }
+
+    @Override
+    public String toString() {
+        return generarDetalle();
+    }
+}
