@@ -1,6 +1,6 @@
 package com.jairorozco.poointerfaces.imprenta.modelo;
 
-public class Informe extends Hoja {
+public class Informe extends Hoja implements Imprimible{
     //Atributos
     private String autor;
     private String editor;
@@ -13,10 +13,10 @@ public class Informe extends Hoja {
         this.editor = editor;
     }
 
-    //Uso de métodos abstractos
+    //Uso de métodos abstractos de la clase padre
     @Override
     public String imprimir() {
         return "Informe escrito por: " + this.autor + ", revisado por: " + this.editor +
-                "\n" + this.contenido;
+                "\n" + this.contenido + "\n";
     }
 }

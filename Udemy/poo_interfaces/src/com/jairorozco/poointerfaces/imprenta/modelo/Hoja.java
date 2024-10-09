@@ -10,7 +10,5 @@ public abstract class Hoja {
     }
 
     //Métodos abstractos
-    public abstract String imprimir();
-
-
+    //public abstract String imprimir();
 }
