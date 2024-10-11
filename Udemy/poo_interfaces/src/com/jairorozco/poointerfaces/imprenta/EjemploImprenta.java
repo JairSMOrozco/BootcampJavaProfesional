@@ -4,22 +4,22 @@ import com.jairorozco.poointerfaces.imprenta.modelo.*;
 
 public class EjemploImprenta {
     public static void main(String[] args) {
-        Curriculum cv = new Curriculum("JAIR OROZCO", "Ingeniero en Sistemas", "REsumen laboral ...");
-        cv.addExperiencia("Java");
-        cv.addExperiencia("Oracle DBA");
-        cv.addExperiencia("SQL Server");
-        cv.addExperiencia("Spring Framework");
-        cv.addExperiencia("Spring MVC");
-        cv.addExperiencia("Spring Security");
+        Curriculum cv = new Curriculum(new Persona("Jair","Orozco"), "Ingeniero en Sistemas", "Resumen laboral ...");
+        cv.addExperiencia("Java")
+        .addExperiencia("Oracle DBA")
+        .addExperiencia("SQL Server")
+        .addExperiencia("Spring Framework")
+        .addExperiencia("Spring MVC")
+        .addExperiencia("Spring Security");
 
-        Libro libro = new Libro("Erich Gamma", "Patrones de Diseño", Genero.PROGRAMACION);
+        Libro libro = new Libro(new Persona("Erich","Gamma"), "Patrones de Diseño", Genero.PROGRAMACION);
         libro.addPagina(new Pagina("Patron Singleton"))
                 .addPagina(new Pagina("Patron Observador"))
                 .addPagina(new Pagina("Patron Factory"))
                 .addPagina(new Pagina("Patron Composite"))
-                .addPagina(new Pagina("Patron Fascade"));
+                .addPagina(new Pagina("Patron Facade"));
 
-        Informe inf = new Informe("JAIR OROZCO", "Karina Tadeo", "Estudio sobre microservicios");
+        Informe inf = new Informe(new Persona("Jair", "Orozco"), new Persona("Karina", "Tadeo"), "Estudio sobre microservicios");
 
         imprimir(cv);
         imprimir(inf);

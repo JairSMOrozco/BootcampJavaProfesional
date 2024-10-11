@@ -5,13 +5,13 @@ import java.util.List;
 
 public class Curriculum extends Hoja implements Imprimible{
     //Atributos
-    private String persona;
+    private Persona persona;
     private String carrera;
     private List<String> experiencias;
 
 
     //Constructor
-    public Curriculum(String persona, String carrera, String contenido){
+    public Curriculum(Persona persona, String carrera, String contenido){
         super(contenido);
         this.persona = persona;
         this.carrera = carrera;

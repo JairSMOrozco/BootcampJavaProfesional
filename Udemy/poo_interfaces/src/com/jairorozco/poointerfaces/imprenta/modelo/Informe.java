@@ -2,12 +2,12 @@ package com.jairorozco.poointerfaces.imprenta.modelo;
 
 public class Informe extends Hoja implements Imprimible{
     //Atributos
-    private String autor;
-    private String editor;
+    private Persona autor;
+    private Persona editor;
 
 
     //Constructor
-    public Informe(String autor, String editor, String contenido) {
+    public Informe(Persona autor, Persona editor, String contenido) {
         super(contenido);
         this.autor = autor;
         this.editor = editor;
